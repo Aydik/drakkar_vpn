@@ -1,0 +1,14 @@
+.contactInfo {
+  display: flex;
+  align-items: center;
+  color: rgb(var(--color-dark));
+
+  .icon {
+    opacity: var(--opacity-5);
+  }
+
+  .title {
+    opacity: var(--opacity-3);
+    margin-left: 8px;
+  }
+}

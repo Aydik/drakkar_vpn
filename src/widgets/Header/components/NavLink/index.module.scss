@@ -1,0 +1,35 @@
+.navLink {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-disabled);
+  opacity: var(--opacity-1);
+  transition: 0.2s;
+
+  .rectangleWrapper{
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .rectangle {
+    background: var(--color-primary);
+    height: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    transition: 0.2s;
+    transform: translateX(-100%);
+  }
+
+  &_selected {
+    color: var(--color-primary);
+
+    .rectangle{
+      transform: translateX(0);
+    }
+  }
+}

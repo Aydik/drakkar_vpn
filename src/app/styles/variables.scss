@@ -1,3 +1,14 @@
 :root {
+  // colors
+  --color-primary: #5E81FE;
+  --color-secondary: #D2E1FF;
+  --color-accent: #3D4F9F;
+  --color-disabled: #697CA6;
 
+  // sizes
+  --header-height: 80px;
+  --horizontal-content-padding: 10%;
+
+  // properties
+  --default-border: 0.5px solid var(--color-secondary);
 }

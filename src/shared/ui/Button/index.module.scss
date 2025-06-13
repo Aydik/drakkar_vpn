@@ -1,0 +1,39 @@
+.button {
+  all: unset;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 16px 0;
+  transition: var(--button-transition);
+  text-align: center;
+
+  &_bold {
+    letter-spacing: -0.25px;
+    font-weight: 500;
+  }
+
+  &_primary {
+    background: rgb(var(--color-primary));
+    color: white;
+  }
+
+  &_secondary {
+    background: rgba(var(--color-secondary), 0.08);
+    color: rgba(var(--color-dark), var(--opacity-1));
+  }
+
+  &_selected {
+    background: rgba(var(--color-dark), var(--opacity-0));
+    color: white;
+  }
+
+  &:active {
+    transform: scale(0.95);
+    filter: brightness(var(--button-brightness-active));
+    box-shadow: 0 0 24px rgba(var(--color-dark), var(--opacity-6));
+  }
+
+  &:hover{
+    filter: brightness(var(--button-brightness-active));
+  }
+}
