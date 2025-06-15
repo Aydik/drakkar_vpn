@@ -1,0 +1,30 @@
+import type { FC } from 'react';
+import styles from './index.module.scss';
+import { Typography } from 'shared/ui/Typography';
+import type { Tariff as TariffType } from 'features/Catalog/model';
+import { Button } from 'shared/ui/Button';
+
+interface Props {
+  tariff: TariffType;
+}
+
+export const Tariff: FC<Props> = ({ tariff }) => {
+  const { name, durationInDays, price, description, limitations } = tariff;
+  return (
+    <div className={styles.tariff}>
+      <div className={styles.info}>
+        <Typography className={styles.name}>{name}</Typography>
+        <Typography className={styles.description}>{description}</Typography>
+      </div>
+      <div className={styles.info}>
+        <Typography className={styles.priceAndDuration}>
+          <span className={styles.price}>{price} ₽</span> / {durationInDays} дней
+        </Typography>
+        <Typography className={styles.limitations}>Макс. {limitations} устройств</Typography>
+        <Button variant={'primary'} className={styles.button}>
+          Купить
+        </Button>
+      </div>
+    </div>
+  );
+};

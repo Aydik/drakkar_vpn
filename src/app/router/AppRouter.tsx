@@ -7,6 +7,7 @@ import { CatalogPage } from 'pages/CatalogPage';
 import { AuthLayout } from 'app/layouts/AuthLayout';
 import { RegisterPage } from 'pages/RegisterPage';
 import { LoginPage } from 'pages/LoginPage';
+import { SupportPage } from 'pages/SupportPage';
 
 const routeConfig: RouteObject[] = [
   {
@@ -19,6 +20,10 @@ const routeConfig: RouteObject[] = [
       {
         path: '/catalog',
         element: <CatalogPage />,
+      },
+      {
+        path: '/support',
+        element: <SupportPage />,
       },
       {
         element: <AuthLayout />,
