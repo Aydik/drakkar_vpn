@@ -3,17 +3,11 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  color: rgba(var(--color-dark), var(--opacity-1));
+  color: var(--color-accent);
   transition: var(--button-transition);
-
-  &:active {
-    color: rgba(var(--color-dark), 1);
-  }
 
   .title {
     margin-left: 4px;
-    font-size: 14px;
-    line-height: 20px;
     color: inherit;
   }
 }

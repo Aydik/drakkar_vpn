@@ -3,10 +3,12 @@
   padding: 0;
 
   &.h1 {
+    color: var(--color-primary);
     font-weight: 700;
   }
 
   &.h2 {
+    color: var(--color-accent);
     font-weight: 600;
   }
 
