@@ -1,0 +1,15 @@
+.authLayout {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+
+  .form{
+    min-width: 450px;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 32px;
+    border-radius: 16px;
+    border: var(--default-border);
+  }
+}

@@ -1,0 +1,56 @@
+.inputContainer {
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .inputWrapper {
+    position: relative;
+    height: 60px;
+    border: var(--default-border);
+    border-radius: 8px;
+    transition: border 0.3s;
+
+    &_error {
+      border: 2px solid #FF4545;
+    }
+
+    .inputField {
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      padding: 28px 16px 12px;
+      font-size: 14px;
+      line-height: 20px;
+      border: none;
+      background: transparent;
+      outline: none;
+    }
+
+    .floatingLabel {
+      position: absolute;
+      top: 20px;
+      left: 16px;
+      color: var(--color-primary);
+      pointer-events: none;
+      transition: 0.2s ease all;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .inputField:focus + .floatingLabel,
+    .inputField:not(:placeholder-shown) + .floatingLabel {
+      top: 10px;
+      font-size: 13px;
+      line-height: 18px;
+    }
+  }
+
+
+  .inputErrorMessage {
+    margin: 8px 16px 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FF4545;
+  }
+}

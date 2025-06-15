@@ -4,6 +4,9 @@ import type { RouteObject } from 'react-router-dom';
 import { MainLayout } from 'app/layouts/MainLayout';
 import { IndexPage } from 'pages/IndexPage';
 import { CatalogPage } from 'pages/CatalogPage';
+import { AuthLayout } from 'app/layouts/AuthLayout';
+import { RegisterPage } from 'pages/RegisterPage';
+import { LoginPage } from 'pages/LoginPage';
 
 const routeConfig: RouteObject[] = [
   {
@@ -16,6 +19,19 @@ const routeConfig: RouteObject[] = [
       {
         path: '/catalog',
         element: <CatalogPage />,
+      },
+      {
+        element: <AuthLayout />,
+        children: [
+          {
+            path: '/login',
+            element: <LoginPage />,
+          },
+          {
+            path: '/register',
+            element: <RegisterPage />,
+          },
+        ],
       },
     ],
   },
