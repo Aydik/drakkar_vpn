@@ -8,6 +8,7 @@ import { AuthLayout } from 'app/layouts/AuthLayout';
 import { RegisterPage } from 'pages/RegisterPage';
 import { LoginPage } from 'pages/LoginPage';
 import { SupportPage } from 'pages/SupportPage';
+import { ProfilePage } from 'pages/ProfilePage';
 
 const routeConfig: RouteObject[] = [
   {
@@ -24,6 +25,10 @@ const routeConfig: RouteObject[] = [
       {
         path: '/support',
         element: <SupportPage />,
+      },
+      {
+        path: '/profile',
+        element: <ProfilePage />,
       },
       {
         element: <AuthLayout />,

@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 export const IndexPage: FC = () => {
   const speed = 50;
   const title = 'Вас приветствует Drakkar VPN';
-  const description = 'Здесь должен был быть красивый лендинг, но мне его лень делать';
+  const description = 'Здесь должен был быть красивый лендинг, но мне его лень делать...';
 
   const [displayedTitle, setDisplayedTitle] = useState<string>('');
   const [displayedDescription, setDisplayedDescription] = useState<string>('');

@@ -1,6 +1,12 @@
 .catalog {
+  margin-bottom: 40px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
+  
+  & > div {
+    width: 250px;
+  }
 }

@@ -1,0 +1,10 @@
+.profilePage {
+  margin-top: 40px;
+
+  .accountGrid {
+    height: 250px;
+    display: grid;
+    grid-template-columns: 30% auto;
+    grid-column-gap: 40px;
+  }
+}

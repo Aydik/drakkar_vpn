@@ -1,14 +1,14 @@
 import type { FC } from 'react';
 import styles from './index.module.scss';
 import { Typography } from 'shared/ui/Typography';
-import type { Tariff as TariffType } from 'features/Catalog/model';
+import type { Tariff } from 'entities/Tarrif/model';
 import { Button } from 'shared/ui/Button';
 
 interface Props {
-  tariff: TariffType;
+  tariff: Tariff;
 }
 
-export const Tariff: FC<Props> = ({ tariff }) => {
+export const TariffCard: FC<Props> = ({ tariff }) => {
   const { name, durationInDays, price, description, limitations } = tariff;
   return (
     <div className={styles.tariff}>

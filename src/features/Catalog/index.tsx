@@ -1,7 +1,7 @@
 import type { FC } from 'react';
-import type { Tariff as TariffType } from 'features/Catalog/model';
+import type { Tariff as TariffType } from 'entities/Tarrif/model';
 import styles from './index.module.scss';
-import { Tariff } from 'features/Catalog/components/Tariff';
+import { TariffCard } from 'entities/Tarrif/components/TariffCard';
 
 const TARIFFS: TariffType[] = [
   {
@@ -25,13 +25,27 @@ const TARIFFS: TariffType[] = [
     durationInDays: 30,
     limitations: 5,
   },
+  {
+    name: 'VPN',
+    description: 'Для всей семьи',
+    price: 700,
+    durationInDays: 30,
+    limitations: 5,
+  },
+  {
+    name: 'VPN',
+    description: 'Для всей семьи',
+    price: 700,
+    durationInDays: 30,
+    limitations: 5,
+  },
 ];
 
 export const Catalog: FC = () => {
   return (
     <div className={styles.catalog}>
       {TARIFFS.map((tariff, index) => (
-        <Tariff key={index} tariff={tariff} />
+        <TariffCard key={index} tariff={tariff} />
       ))}
     </div>
   );

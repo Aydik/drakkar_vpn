@@ -5,3 +5,10 @@ export interface Tariff {
   durationInDays: number;
   limitations: number;
 }
+
+export interface CurrentTariff {
+  currentTariffName: string;
+  expiresAt: string;
+  isAutoRenew: true;
+  isActive: true;
+}
