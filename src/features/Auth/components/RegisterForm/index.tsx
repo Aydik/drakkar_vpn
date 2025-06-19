@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Button } from 'shared/ui/Button';
 import { Typography } from 'shared/ui/Typography';
 import styles from 'features/Auth/styles/index.module.scss';
-import { InputWithFormatter } from 'features/Auth/components/ui/InputWithFormatter';
+import { InputWithFormatter } from 'shared/ui/InputWithFormatter';
 import { AxiosError } from 'axios';
 import type { CreateUserDto } from 'features/Auth/model';
 import { useNavigate } from 'react-router-dom';

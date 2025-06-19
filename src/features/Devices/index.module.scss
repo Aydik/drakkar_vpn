@@ -1,0 +1,28 @@
+.devices{
+  margin-top: 40px;
+}
+
+.caption{
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info{
+  display: flex;
+  align-items: end;
+  gap: 1.5rem;
+
+  .devicesCount{
+    white-space: nowrap;
+    color: var(--color-disabled);
+    font-size: 1.5rem;
+    line-height: 1.5em;
+    font-weight: 800;
+  }
+}
+
+.noData{
+  padding: 1rem;
+  color: var(--color-disabled);
+}

@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import styles from './index.module.scss';
 import { UserProfile } from 'entities/User/components/UserProfile';
 import { MySubscription } from 'src/entities/Tarrif/components/MySubscription';
+import { Devices } from 'features/Devices';
 
 export const ProfilePage: FC = () => {
   return (
@@ -10,6 +11,7 @@ export const ProfilePage: FC = () => {
         <UserProfile />
         <MySubscription />
       </div>
+      <Devices />
     </div>
   );
 };
