@@ -31,7 +31,7 @@ export const LoginForm: FC = () => {
         email: data.email,
         password: data.password,
       });
-      dispatch(updateUser());
+      await dispatch(updateUser());
       navigate('/profile');
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
