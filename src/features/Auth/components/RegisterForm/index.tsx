@@ -45,13 +45,18 @@ export const RegisterForm: FC = () => {
       navigate('/profile');
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
-      const message =
-        axiosError?.response?.data?.errorMessages?.[0] || 'Произошла ошибка регистрации';
-
-      setError('email', {
-        type: 'manual',
-        message,
-      });
+      const message = axiosError?.response?.data?.errorMessages?.[0];
+      if (message) {
+        setError('email', {
+          type: 'manual',
+          message,
+        });
+      } else {
+        setError('fullName', {
+          type: 'manual',
+          message: 'Произошла ошибка регистрации',
+        });
+      }
     }
   };
 

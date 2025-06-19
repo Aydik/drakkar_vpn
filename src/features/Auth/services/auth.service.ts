@@ -4,7 +4,7 @@ import type { LoginUserDto, CreateUserDto } from 'features/Auth/model';
 
 export const registerUser = async (data: CreateUserDto) => {
   try {
-    const res = await axiosInstance.post('auth/register', data);
+    const res = await axiosInstance.post('user/auth/register', data);
     return res.data;
   } catch (err) {
     throw err;
@@ -13,7 +13,7 @@ export const registerUser = async (data: CreateUserDto) => {
 
 export const authUser = async (data: LoginUserDto) => {
   try {
-    const res = await axiosInstance.post('auth/login', data);
+    const res = await axiosInstance.post('user/auth/login', data);
     await setCookie(res.data.result.token);
     return res.data;
   } catch (err) {
