@@ -9,34 +9,27 @@ interface Props {
   variant?: 'primary' | 'secondary' | 'accent';
   type?: 'button' | 'submit' | 'reset';
   style?: CSSProperties;
+  size?: 'small' | 'medium' | 'large';
 }
 
 export const Button: FC<Props> = ({
   children,
   onClick,
   className,
-  variant,
+  variant = 'primary',
   type = 'button',
   style,
+  size = 'medium',
 }) => {
-  let styleClass;
-  switch (variant) {
-    case 'primary':
-      styleClass = styles.button_primary;
-      break;
-    case 'secondary':
-      styleClass = styles.button_secondary;
-      break;
-    case 'accent':
-      styleClass = styles.button_accent;
-      break;
-    default:
-      styleClass = '';
-  }
   return (
     <button
       onClick={onClick}
-      className={clsx(styles.button, styleClass, className)}
+      className={clsx(
+        styles.button,
+        styles[`button_${size}`],
+        styles[`button_${variant}`],
+        className,
+      )}
       type={type}
       style={style}
     >

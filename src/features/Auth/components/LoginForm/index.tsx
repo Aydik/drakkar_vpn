@@ -32,7 +32,7 @@ export const LoginForm: FC = () => {
         password: data.password,
       });
       dispatch(updateUser());
-      navigate('/');
+      navigate('/profile');
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       const message =
@@ -77,7 +77,7 @@ export const LoginForm: FC = () => {
             }}
           />
         </div>
-        <Button variant="primary" className={styles.button} type="submit">
+        <Button className={styles.button} type="submit">
           Войти
         </Button>
         <div className={styles.linkContainer}>

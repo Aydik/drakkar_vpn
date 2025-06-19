@@ -21,7 +21,7 @@ export const TariffCard: FC<Props> = ({ tariff }) => {
           <span className={styles.price}>{price} ₽</span> / {durationInDays} дней
         </Typography>
         <Typography className={styles.limitations}>Макс. {limitations} устройств</Typography>
-        <Button variant={'primary'} className={styles.button}>
+        <Button className={styles.button} size={'small'}>
           Купить
         </Button>
       </div>

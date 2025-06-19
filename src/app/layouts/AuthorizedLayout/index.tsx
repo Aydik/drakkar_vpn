@@ -1,20 +1,13 @@
 import { type FC, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import styles from './index.module.scss';
 import { useSelector } from 'react-redux';
 import type { RootState } from 'app/store';
 
-export const AuthLayout: FC = () => {
+export const AuthorizedLayout: FC = () => {
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.user);
   useEffect(() => {
-    if (user) navigate('/');
+    if (!user) navigate('/login');
   }, [navigate, user]);
-  return (
-    <div className={styles.authLayout}>
-      <div className={styles.form}>
-        <Outlet />
-      </div>
-    </div>
-  );
+  return <Outlet />;
 };

@@ -32,8 +32,6 @@ export const setCookie = async (accessToken: string) => {
 export const logout = async () => {
   try {
     Cookies.remove('accessToken');
-    Cookies.remove('refreshToken');
-    Cookies.remove('userId');
   } catch (err) {
     throw err;
   }

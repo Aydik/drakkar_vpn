@@ -9,6 +9,7 @@ import { RegisterPage } from 'pages/RegisterPage';
 import { LoginPage } from 'pages/LoginPage';
 import { SupportPage } from 'pages/SupportPage';
 import { ProfilePage } from 'pages/ProfilePage';
+import { AuthorizedLayout } from 'app/layouts/AuthorizedLayout';
 
 const routeConfig: RouteObject[] = [
   {
@@ -23,12 +24,17 @@ const routeConfig: RouteObject[] = [
         element: <CatalogPage />,
       },
       {
-        path: '/support',
-        element: <SupportPage />,
-      },
-      {
-        path: '/profile',
-        element: <ProfilePage />,
+        element: <AuthorizedLayout />,
+        children: [
+          {
+            path: '/support',
+            element: <SupportPage />,
+          },
+          {
+            path: '/profile',
+            element: <ProfilePage />,
+          },
+        ],
       },
       {
         element: <AuthLayout />,

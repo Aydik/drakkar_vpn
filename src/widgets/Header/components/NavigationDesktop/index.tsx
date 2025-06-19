@@ -1,13 +1,17 @@
 import styles from './index.module.scss';
-import { PAGES } from 'widgets/Header/constants';
-import { NavLink } from 'widgets/Header/components/NavLink';
+import type { NavLink as NavLinkType } from 'widgets/Header/types';
 import type { FC } from 'react';
+import { NavLink } from 'widgets/Header/components/NavLink';
 
-export const NavigationDesktop: FC = () => {
+interface Props {
+  pages: NavLinkType[];
+}
+
+export const NavigationDesktop: FC<Props> = ({ pages }) => {
   return (
     <nav className={styles.nav}>
       <ul className={styles.navList}>
-        {PAGES.map((page) => (
+        {pages.map((page) => (
           <li key={page.url}>
             <NavLink url={page.url} text={page.text} />
           </li>

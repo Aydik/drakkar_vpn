@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { User } from 'entities/User/model';
-import { getUser } from 'entities/User/services/user.service.ts';
+import { getUser } from 'entities/User/services/user.service';
+import { logout as serviceLogout } from 'features/Auth/services/auth.service';
 
 interface AuthenticatedState {
   isAuthenticated: true;
@@ -44,7 +45,10 @@ const userSlice = createSlice({
   name: 'user',
   initialState: unauthenticatedState as UserState,
   reducers: {
-    logout: () => unauthenticatedState,
+    logout() {
+      serviceLogout();
+      return unauthenticatedState;
+    },
     setUser(state, action: PayloadAction<Partial<User>>) {
       state.isAuthenticated = true;
       state.user = sanitizeUser({

@@ -3,7 +3,6 @@
   cursor: pointer;
   box-sizing: border-box;
   border-radius: 8px;
-  padding: 16px 0;
   width: 100%;
   font-weight: 500;
   transition: 0.2s;
@@ -24,12 +23,20 @@
     color: white;
   }
 
+  &_small {
+    padding: 8px 0;
+  }
+
+  &_medium {
+    padding: 16px 0;
+  }
+
   &:active {
     transform: scale(0.95);
     filter: brightness(0.9);
   }
 
-  &:hover{
+  &:hover {
     filter: brightness(0.9);
   }
 }
