@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { LoginForm } from 'features/Auth/components/LoginForm';
+import { Auth } from 'features/Auth';
 
 export const LoginPage: FC = () => {
-  return <LoginForm />;
+  return <Auth authType={'login'} />;
 };

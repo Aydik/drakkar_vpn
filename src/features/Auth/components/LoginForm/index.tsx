@@ -4,13 +4,14 @@ import { Button } from 'shared/ui/Button';
 import { Typography } from 'shared/ui/Typography';
 import styles from 'features/Auth/styles/index.module.scss';
 import { InputWithFormatter } from 'features/Auth/components/ui/InputWithFormatter';
-// import { authUser } from 'features/Auth/services/auth.service.ts';
 import { AxiosError } from 'axios';
 import type { LoginUserDto } from 'features/Auth/model';
-// import { useDispatch } from 'react-redux';
-// import { AppDispatch } from 'app/store';
-// import { setUser } from 'entities/User/slice';
+import { useDispatch } from 'react-redux';
+import type { AppDispatch } from 'app/store';
 import { useNavigate } from 'react-router-dom';
+import { authUser } from 'features/Auth/services/auth.service.ts';
+import { updateUser } from 'entities/User/slice';
+import type { ApiResponse } from 'shared/api/response.ts';
 
 export const LoginForm: FC = () => {
   const {
@@ -20,27 +21,27 @@ export const LoginForm: FC = () => {
     setError,
   } = useForm<LoginUserDto>();
 
-  // const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
+
   const navigate = useNavigate();
 
   const onSubmit = async (data: LoginUserDto) => {
     try {
-      console.log(data);
-      // const res = await authUser({
-      //   email: data.email,
-      //   password: data.password,
-      // });
-      // dispatch(setUser(res));
+      await authUser({
+        email: data.email,
+        password: data.password,
+      });
+      dispatch(updateUser());
+      navigate('/');
     } catch (error) {
-      const axiosError = error as AxiosError;
-      if (axiosError.response?.status === 401) {
-        setError('password', {
-          type: 'manual',
-          message: 'Неверный email или пароль',
-        });
-      } else {
-        console.error('Ошибка авторизации:', error);
-      }
+      const axiosError = error as AxiosError<ApiResponse>;
+      const message =
+        axiosError?.response?.data?.errorMessages?.[0] || 'Произошла ошибка регистрации';
+
+      setError('password', {
+        type: 'manual',
+        message,
+      });
     }
   };
 
@@ -73,10 +74,6 @@ export const LoginForm: FC = () => {
             error={errors.password}
             rules={{
               required: 'Введите пароль',
-              minLength: {
-                value: 6,
-                message: 'Пароль должен содержать минимум 6 символов',
-              },
             }}
           />
         </div>

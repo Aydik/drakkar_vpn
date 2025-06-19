@@ -166,5 +166,109 @@ PUT /api/subscription/autorenew
   "isSuccess": true,
   "result": "Autorenewal setting updated"
 }
+3. Конфигурации VPN
 
+В личном кабинете пользователь может создать и управлять своими VPN-устройствами. Каждое устройство — это отдельная конфигурация WireGuard, сгенерированная по публичному ключу клиента.
+
+Отображаемые поля на странице:
+-Имя устройства (deviceName)
+-Дата создания (createdAt)
+-Назначенный IP (assignedIp)
+Кнопка "Скопировать IP"
+Кнопка "Показать QR-код"
+Кнопка "Удалить"
+
+Бизнес-логика:
+-Все действия доступны только после авторизации (Authorization: Bearer <token>)
+-Количество устройств ограничено тарифом (ограничение возвращается с сервера — не нужно хранить на фронте)
+-При попытке создать устройство сверх лимита — выводить ошибку от бэка
+
+Создание устройства
+Поля:
+-deviceName — имя устройства (input)
+-publicKey — публичный ключ клиента (генерируется самим WireGuard на клиенте)
+
+__POST /api/vpn/devices__
+{
+"deviceName": "MacBook Pro",
+"publicKey": "AbCDEF123..."
+}
+
+Ответ:
+{
+"isSuccess": true,
+"result": {
+"deviceId": "guid",
+"deviceName": "MacBook Pro",
+"createdAt": "2025-06-16T12:00:00",
+"assignedIp": "10.8.0.3",
+"serverConfig": {
+"publicKey": "XYZ456...",
+"endpoint": "vpn.example.com:51820",
+"allowedIPs": "0.0.0.0/0, ::/0",
+"persistentKeepalive": 25
+}
+}
+}
+
+Генерация конфигурации на клиенте
+Собирается строкой:
+[Interface]
+PrivateKey = <сгенерировано на клиенте>
+Address = <assignedIp>
+
+[Peer]
+PublicKey = <serverConfig.publicKey>
+Endpoint = <serverConfig.endpoint>
+AllowedIPs = <serverConfig.allowedIPs>
+PersistentKeepalive = <serverConfig.persistentKeepalive>
+
+Вот как это на реакте делается:
+import QRCode from 'qrcode';
+
+const configText = `
+[Interface]
+PrivateKey = ${privateKey}
+Address = ${assignedIp}
+
+[Peer]
+PublicKey = ${serverPublicKey}
+Endpoint = ${endpoint}
+AllowedIPs = 0.0.0.0/0, ::/0
+PersistentKeepalive = 25
+`;
+
+QRCode.toDataURL(configText).then(setQrImage);
+
+Удаление
+__DELETE /api/vpn/devices/{deviceId}__
+
+Ответ:
+{
+"isSuccess": true,
+"result": "Deleted"
+}
+
+Получение списка устройств
+
+__GET /api/vpn/devices__
+Ответ:
+{
+"isSuccess": true,
+"result": [
+{
+"deviceId": "guid",
+"deviceName": "iPhone 14",
+"createdAt": "2025-06-01T10:00:00",
+"assignedIp": "10.8.0.2",
+"serverConfig": {
+"publicKey": "XYZ456...",
+"endpoint": "vpn.example.com:51820",
+"allowedIPs": "0.0.0.0/0, ::/0",
+"persistentKeepalive": 25
+}
+},
+...
+]
+}
 

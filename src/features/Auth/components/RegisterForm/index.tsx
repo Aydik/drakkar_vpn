@@ -4,13 +4,14 @@ import { Button } from 'shared/ui/Button';
 import { Typography } from 'shared/ui/Typography';
 import styles from 'features/Auth/styles/index.module.scss';
 import { InputWithFormatter } from 'features/Auth/components/ui/InputWithFormatter';
-// import { registerUser } from 'features/Auth/services/auth.service.ts';
 import { AxiosError } from 'axios';
 import type { CreateUserDto } from 'features/Auth/model';
 import { useNavigate } from 'react-router-dom';
-// import { setUser } from 'entities/User/slice';
-// import { useDispatch } from 'react-redux';
-// import { AppDispatch } from 'app/store';
+import { authUser, registerUser } from 'features/Auth/services/auth.service.ts';
+import { useDispatch } from 'react-redux';
+import type { AppDispatch } from 'app/store';
+import { updateUser } from 'entities/User/slice';
+import type { ApiResponse } from 'shared/api/response.ts';
 
 interface RegisterFormFields extends CreateUserDto {
   confirmPassword: string;
@@ -25,31 +26,36 @@ export const RegisterForm: FC = () => {
     setError,
   } = useForm<RegisterFormFields>();
 
-  // const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const navigate = useNavigate();
 
   const onSubmit = async (data: RegisterFormFields) => {
     try {
-      console.log(data);
-      // const res = await registerUser({
-      //   email: data.email,
-      //   password: data.password,
-      // });
-      // dispatch(setUser(res));
+      await registerUser({
+        fullName: data.fullName,
+        email: data.email,
+        password: data.password,
+      });
+      await authUser({
+        email: data.email,
+        password: data.password,
+      });
+      dispatch(updateUser());
+      navigate('/');
     } catch (error) {
-      const axiosError = error as AxiosError;
-      if (axiosError.response?.status === 400) {
-        setError('email', {
-          type: 'manual',
-          message: 'Email уже используется',
-        });
-      } else {
-        console.error('Ошибка регистрации:', error);
-      }
+      const axiosError = error as AxiosError<ApiResponse>;
+      const message =
+        axiosError?.response?.data?.errorMessages?.[0] || 'Произошла ошибка регистрации';
+
+      setError('email', {
+        type: 'manual',
+        message,
+      });
     }
   };
 
   const passwordValue = watch('password');
-  const navigate = useNavigate();
 
   return (
     <>
@@ -58,6 +64,24 @@ export const RegisterForm: FC = () => {
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGrid}>
+          <InputWithFormatter<RegisterFormFields>
+            name="fullName"
+            label="Имя пользователя"
+            type="text"
+            control={control}
+            error={errors.fullName}
+            rules={{
+              required: 'Введите имя пользователя',
+              minLength: {
+                value: 6,
+                message: 'Имя должно содержать минимум 6 символов',
+              },
+              maxLength: {
+                value: 50,
+                message: 'Имя должно содержать максимум 50 символов',
+              },
+            }}
+          />
           <InputWithFormatter<RegisterFormFields>
             name="email"
             label="Email"

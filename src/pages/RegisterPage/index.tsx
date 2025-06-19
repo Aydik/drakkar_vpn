@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { RegisterForm } from 'features/Auth/components/RegisterForm';
+import { Auth } from 'features/Auth';
 
 export const RegisterPage: FC = () => {
-  return <RegisterForm />;
+  return <Auth authType={'register'} />;
 };

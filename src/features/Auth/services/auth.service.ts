@@ -1,11 +1,10 @@
 import { axiosInstance } from 'shared/api/axiosInstance.ts';
 import Cookies from 'js-cookie';
-import { CreateUserDto, LoginUserDto } from 'app/models/generated';
+import type { LoginUserDto, CreateUserDto } from 'features/Auth/model';
 
 export const registerUser = async (data: CreateUserDto) => {
   try {
     const res = await axiosInstance.post('auth/register', data);
-    await setCookie(res.data.accessToken, res.data.refreshToken, res.data.id);
     return res.data;
   } catch (err) {
     throw err;
@@ -15,25 +14,15 @@ export const registerUser = async (data: CreateUserDto) => {
 export const authUser = async (data: LoginUserDto) => {
   try {
     const res = await axiosInstance.post('auth/login', data);
-    await setCookie(res.data.accessToken, res.data.refreshToken, res.data.id);
+    await setCookie(res.data.result.token);
     return res.data;
   } catch (err) {
     throw err;
   }
 };
 
-export const setCookie = async (accessToken: string, refreshToken: string, userId: string) => {
+export const setCookie = async (accessToken: string) => {
   Cookies.set('accessToken', accessToken, {
-    expires: 30,
-    secure: true,
-    sameSite: 'Strict',
-  });
-  Cookies.set('refreshToken', refreshToken, {
-    expires: 30,
-    secure: true,
-    sameSite: 'Strict',
-  });
-  Cookies.set('userId', userId, {
     expires: 30,
     secure: true,
     sameSite: 'Strict',
