@@ -67,4 +67,23 @@
     top: 16px;
     left: 16px;
   }
+
+  .noData {
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &_title {
+      color: var(--color-disabled);
+    }
+
+    &_link {
+      all: unset;
+      cursor: pointer;
+      color: var(--color-primary);
+    }
+  }
 }

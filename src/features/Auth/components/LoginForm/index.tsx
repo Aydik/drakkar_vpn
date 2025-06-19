@@ -34,7 +34,6 @@ export const LoginForm: FC = () => {
       await dispatch(updateUser());
       navigate('/profile');
     } catch (error) {
-      console.log(error);
       const axiosError = error as AxiosError<ApiResponse>;
       const message =
         axiosError?.response?.data?.errorMessages?.[0] || 'Произошла ошибка авторизации';

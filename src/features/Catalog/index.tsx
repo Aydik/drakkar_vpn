@@ -25,10 +25,10 @@ export const Catalog: FC = () => {
 
   return (
     <div className={styles.catalog}>
-      {tariffs ? (
-        tariffs.map((tariff, index) => <TariffCard key={index} tariff={tariff} />)
+      {tariffs.length ? (
+        tariffs.map((tariff) => <TariffCard key={tariff.id} tariff={tariff} />)
       ) : (
-        <Typography className={styles.error}>Нет доступных тарифов</Typography>
+        <Typography className={styles.noData}>Нет доступных тарифов</Typography>
       )}
     </div>
   );

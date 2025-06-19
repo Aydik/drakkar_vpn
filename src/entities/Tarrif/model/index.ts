@@ -1,4 +1,5 @@
 export interface Tariff {
+  id: string;
   name: string;
   description: string;
   price: number;
@@ -6,7 +7,7 @@ export interface Tariff {
   maxDevices: number;
 }
 
-export interface CurrentTariff {
+export interface Subscription {
   currentTariffName: string;
   expiresAt: string;
   isAutoRenew: true;

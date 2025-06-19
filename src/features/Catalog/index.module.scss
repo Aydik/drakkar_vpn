@@ -9,4 +9,9 @@
   & > div {
     width: 280px;
   }
+
+  .noData {
+    padding: 1rem;
+    color: var(--color-disabled);
+  }
 }
