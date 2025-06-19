@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const TariffCard: FC<Props> = ({ tariff }) => {
-  const { name, durationInDays, price, description, limitations } = tariff;
+  const { name, durationInDays, price, description, maxDevices } = tariff;
   return (
     <div className={styles.tariff}>
       <div className={styles.info}>
@@ -20,7 +20,7 @@ export const TariffCard: FC<Props> = ({ tariff }) => {
         <Typography className={styles.priceAndDuration}>
           <span className={styles.price}>{price} ₽</span> / {durationInDays} дней
         </Typography>
-        <Typography className={styles.limitations}>Макс. {limitations} устройств</Typography>
+        <Typography className={styles.limitations}>Макс. {maxDevices} устройств</Typography>
         <Button className={styles.button} size={'small'}>
           Купить
         </Button>

@@ -1,52 +1,35 @@
-import type { FC } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import type { Tariff as TariffType } from 'entities/Tarrif/model';
 import styles from './index.module.scss';
 import { TariffCard } from 'entities/Tarrif/components/TariffCard';
-
-const TARIFFS: TariffType[] = [
-  {
-    name: 'VPN',
-    description: 'Для всей семьи',
-    price: 700,
-    durationInDays: 30,
-    limitations: 5,
-  },
-  {
-    name: 'VPN',
-    description: 'Для всей семьи и еще какой-то длинный текст',
-    price: 700,
-    durationInDays: 30,
-    limitations: 5,
-  },
-  {
-    name: 'VPN',
-    description: 'Для всей семьи',
-    price: 700,
-    durationInDays: 30,
-    limitations: 5,
-  },
-  {
-    name: 'VPN',
-    description: 'Для всей семьи',
-    price: 700,
-    durationInDays: 30,
-    limitations: 5,
-  },
-  {
-    name: 'VPN',
-    description: 'Для всей семьи',
-    price: 700,
-    durationInDays: 30,
-    limitations: 5,
-  },
-];
+import { Typography } from 'shared/ui/Typography';
+import { getTariffs } from 'entities/Tarrif/services/tariff.service.ts';
+import type { ApiResponse } from 'shared/api/response.ts';
 
 export const Catalog: FC = () => {
+  const [tariffs, setTariffs] = useState<TariffType[]>([]);
+
+  useEffect(() => {
+    const fetchTariffs = async () => {
+      try {
+        const res: ApiResponse = await getTariffs();
+        if (res.result) setTariffs(res.result);
+        else setTariffs([]);
+      } catch (error) {
+        console.error(error);
+        setTariffs([]);
+      }
+    };
+    fetchTariffs();
+  }, []);
+
   return (
     <div className={styles.catalog}>
-      {TARIFFS.map((tariff, index) => (
-        <TariffCard key={index} tariff={tariff} />
-      ))}
+      {tariffs ? (
+        tariffs.map((tariff, index) => <TariffCard key={index} tariff={tariff} />)
+      ) : (
+        <Typography className={styles.error}>Нет доступных тарифов</Typography>
+      )}
     </div>
   );
 };

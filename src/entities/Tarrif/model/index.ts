@@ -3,7 +3,7 @@ export interface Tariff {
   description: string;
   price: number;
   durationInDays: number;
-  limitations: number;
+  maxDevices: number;
 }
 
 export interface CurrentTariff {
