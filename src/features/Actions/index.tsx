@@ -56,7 +56,7 @@ export const Actions: FC = () => {
     <div className={styles.actions}>
       <div className={styles.caption}>
         <Typography variant={'h3'}>Мои действия</Typography>
-        {totalPages > 0 && <Pagination page={page} totalPages={totalPages} setPage={setPage} />}
+        {totalPages > 1 && <Pagination page={page} totalPages={totalPages} setPage={setPage} />}
       </div>
       {actions.length ? (
         <div className={styles.tableWrapper}>
