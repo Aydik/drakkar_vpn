@@ -5,6 +5,7 @@ import type { Action } from 'features/Actions/model';
 import { getActions } from 'features/Actions/services/device.service.ts';
 import { formatISOString } from 'shared/utils/date.ts';
 import { Table } from 'shared/ui/Table';
+import { Pagination } from 'shared/ui/Pagination';
 
 export const Actions: FC = () => {
   const [actions, setActions] = useState<Action[]>([]);
@@ -42,6 +43,7 @@ export const Actions: FC = () => {
     <div className={styles.actions}>
       <div className={styles.caption}>
         <Typography variant={'h3'}>Мои действия</Typography>
+        <Pagination page={0} totalPages={10} />
       </div>
       {actions.length ? (
         <div className={styles.tableWrapper}>

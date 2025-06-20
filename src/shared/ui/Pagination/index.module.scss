@@ -1,0 +1,34 @@
+.pagination {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-disabled);
+
+  .page {
+    font-size: 2rem;
+    line-height: 1em;
+  }
+
+  .button {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+
+    &_next {
+      transform: rotate(180deg);
+    }
+
+    :hover {
+      color: var(--color-accent);
+    }
+
+    &_disabled{
+      opacity: 0.3;
+
+      :hover {
+        color: inherit;
+      }
+    }
+  }
+}
