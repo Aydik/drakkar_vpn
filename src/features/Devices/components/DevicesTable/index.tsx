@@ -14,7 +14,6 @@ export const DevicesTable: FC<Props> = ({ devices }) => {
   const headers: Record<string, ReactNode> = {
     createdAt: 'Дата создания',
     deviceName: 'Название',
-    assignedIp: 'IP адрес',
     config: 'Показать конфиг',
     delete: 'Удалить',
   };
@@ -23,9 +22,14 @@ export const DevicesTable: FC<Props> = ({ devices }) => {
     return devices.map((device: Device) => ({
       createdAt: formatISOString(device.createdAt),
       deviceName: device.deviceName,
-      assignedIp: device.assignedIp,
       config: <OpenConfigButton device={device} />,
-      delete: <DeleteDeviceButton />,
+      delete: (
+        <DeleteDeviceButton
+          onClick={() => {
+            console.log(`Delete device id=${device.deviceId}`);
+          }}
+        />
+      ),
     }));
   };
 
