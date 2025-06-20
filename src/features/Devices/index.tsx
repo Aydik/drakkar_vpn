@@ -38,11 +38,13 @@ export const Devices: FC = () => {
           <Typography className={styles.devicesCount}>
             {devices.length} / {maxDevices}
           </Typography>
-          <AddDeviceButton updateDevices={fetchDevices} />
+          {devices.length < maxDevices && <AddDeviceButton updateDevices={fetchDevices} />}
         </div>
       </div>
       {devices.length ? (
-        <DevicesTable devices={devices} updateDevices={fetchDevices} />
+        <div className={styles.tableWrapper}>
+          <DevicesTable devices={devices} updateDevices={fetchDevices} />
+        </div>
       ) : (
         <Typography variant={'p'} className={styles.noData}>
           У вас нет добавленных устройств

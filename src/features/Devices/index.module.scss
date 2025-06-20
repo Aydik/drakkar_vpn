@@ -1,19 +1,19 @@
-.devices{
+.devices {
   margin-top: 40px;
 }
 
-.caption{
+.caption {
   padding: 0 1rem;
   display: flex;
   justify-content: space-between;
 }
 
-.info{
+.info {
   display: flex;
   align-items: end;
   gap: 1.5rem;
 
-  .devicesCount{
+  .devicesCount {
     white-space: nowrap;
     color: var(--color-disabled);
     font-size: 1.5rem;
@@ -22,7 +22,11 @@
   }
 }
 
-.noData{
+.tableWrapper {
+  margin-top: 1.5rem;
+}
+
+.noData {
   padding: 1rem;
   color: var(--color-disabled);
 }

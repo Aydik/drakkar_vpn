@@ -9,12 +9,14 @@ interface Props {
 
 export const AddDeviceButton: FC<Props> = ({ updateDevices }) => {
   const [isFormOpened, setIsFormOpened] = useState<boolean>(false);
-  const handleAddDevice = () => {
-    setIsFormOpened(true);
-  };
   return (
     <>
-      <Button size={'small'} onClick={handleAddDevice}>
+      <Button
+        size={'small'}
+        onClick={() => {
+          setIsFormOpened(true);
+        }}
+      >
         Добавить устройство
       </Button>
       <Modal isOpened={isFormOpened} onClose={() => setIsFormOpened(false)}>

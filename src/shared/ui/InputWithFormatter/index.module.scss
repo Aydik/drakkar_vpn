@@ -12,7 +12,7 @@
     transition: border 0.3s;
 
     &_error {
-      border: 2px solid #FF4545;
+      border: 2px solid var(--color-red);
     }
 
     .inputField {
@@ -51,6 +51,6 @@
     margin: 8px 16px 0;
     font-size: 14px;
     line-height: 20px;
-    color: #FF4545;
+    color: var(--color-red);
   }
 }

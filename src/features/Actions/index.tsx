@@ -22,7 +22,7 @@ export const Actions: FC = () => {
     }));
   };
 
-  const fetchDevices = async () => {
+  const fetchActions = async () => {
     try {
       const data = await getActions();
       setActions(data);
@@ -33,8 +33,8 @@ export const Actions: FC = () => {
   };
 
   useEffect(() => {
-    fetchDevices();
-    const interval = setInterval(fetchDevices, 5000);
+    fetchActions();
+    const interval = setInterval(fetchActions, 5000);
     return () => clearInterval(interval);
   }, []);
 
