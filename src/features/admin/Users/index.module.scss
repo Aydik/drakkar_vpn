@@ -1,0 +1,19 @@
+.logs{
+  padding-top: 1rem;
+}
+
+.caption{
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.tableWrapper{
+  margin-top: 1.5rem;
+  margin-bottom: 50px;
+}
+.noData{
+  padding: 1rem;
+  color: var(--color-disabled);
+}
