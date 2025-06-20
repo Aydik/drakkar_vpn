@@ -2,7 +2,7 @@ import { type FC, type ReactNode, useCallback, useEffect, useState } from 'react
 import styles from './index.module.scss';
 import { Typography } from 'shared/ui/Typography';
 import type { Action } from 'features/Actions/model';
-import { getActions } from 'features/Actions/services/device.service.ts';
+import { getActions } from 'features/Actions/services/actions.service';
 import { formatISOString } from 'shared/utils/date.ts';
 import { Table } from 'shared/ui/Table';
 import { Pagination } from 'shared/ui/Pagination';

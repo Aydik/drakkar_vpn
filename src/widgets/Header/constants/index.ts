@@ -9,3 +9,5 @@ export const AUTHORIZED_PAGES: NavLink[] = [
   { url: '/support', text: 'Тех. поддержка' },
   { url: '/profile', text: 'Профиль' },
 ];
+
+export const ADMIN_PAGES: NavLink[] = [{ url: '/admin/logs', text: 'Логи' }];

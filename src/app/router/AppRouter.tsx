@@ -10,6 +10,8 @@ import { LoginPage } from 'pages/LoginPage';
 import { SupportPage } from 'pages/SupportPage';
 import { ProfilePage } from 'pages/ProfilePage';
 import { AuthorizedLayout } from 'app/layouts/AuthorizedLayout';
+import { AdminLayout } from 'app/layouts/AdminLayout';
+import { LogsPage } from 'pages/admin/LogsPage';
 
 const routeConfig: RouteObject[] = [
   {
@@ -48,6 +50,16 @@ const routeConfig: RouteObject[] = [
             element: <RegisterPage />,
           },
         ],
+      },
+    ],
+  },
+  {
+    element: <AdminLayout />,
+    path: '/admin',
+    children: [
+      {
+        path: 'logs',
+        element: <LogsPage />,
       },
     ],
   },

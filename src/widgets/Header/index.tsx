@@ -4,10 +4,21 @@ import { LoginButton } from 'widgets/Header/components/LoginButton';
 import { NavigationDesktop } from 'widgets/Header/components/NavigationDesktop';
 import { useSelector } from 'react-redux';
 import type { RootState } from 'app/store';
-import { AUTHORIZED_PAGES, UNAUTHORIZED_PAGES } from 'widgets/Header/constants';
+import { ADMIN_PAGES, AUTHORIZED_PAGES, UNAUTHORIZED_PAGES } from 'widgets/Header/constants';
 
-export const Header: FC = () => {
+interface Props {
+  isAdmin?: boolean;
+}
+
+export const Header: FC<Props> = ({ isAdmin = false }) => {
   const user = useSelector((state: RootState) => state.user.user);
+  if (isAdmin) {
+    return (
+      <header className={styles.header}>
+        <NavigationDesktop pages={ADMIN_PAGES} />
+      </header>
+    );
+  }
   return (
     <header className={styles.header}>
       <div className={styles.links}>
