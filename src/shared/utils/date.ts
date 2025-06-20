@@ -1,4 +1,4 @@
-export const formatISODuration = (duration: string): string => {
+export function formatISODuration(duration: string): string {
   const regex = /^P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?)?$/;
   const match = duration.match(regex);
 
@@ -12,9 +12,9 @@ export const formatISODuration = (duration: string): string => {
   if (minutes) parts.push(`${minutes} мин.`);
 
   return parts.length > 0 ? parts.join(' ') : '0 мин.';
-};
+}
 
-export const getISODurationFromNow = (isoString: string): string => {
+export function getISODurationFromNow(isoString: string): string {
   const now = new Date();
   const target = new Date(isoString);
   const diffMs = Math.abs(target.getTime() - now.getTime());
@@ -32,4 +32,19 @@ export const getISODurationFromNow = (isoString: string): string => {
     if (minutes > 0) iso += `${minutes}M`;
   }
   return iso;
-};
+}
+
+export function formatISOString(isoString: string): string {
+  const date = new Date(isoString);
+
+  const pad = (n: number): string => String(n).padStart(2, '0');
+
+  const year: number = date.getUTCFullYear();
+  const month: string = pad(date.getUTCMonth() + 1); // Месяцы с 0
+  const day: string = pad(date.getUTCDate());
+  const hours: string = pad(date.getUTCHours());
+  const minutes: string = pad(date.getUTCMinutes());
+  const seconds: string = pad(date.getUTCSeconds());
+
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}

@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import { type FC, type ReactNode } from 'react';
 import styles from './index.module.scss';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   emptyMessage?: string;
 }
 
-export const Table: React.FC<Props> = ({
+export const Table: FC<Props> = ({
   headers,
   data,
   emptyMessage = 'Нет данных для отображения',
