@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react';
 import { formatISOString } from 'shared/utils/date.ts';
 import { Table } from 'shared/ui/Table';
 import { DeleteDeviceButton } from 'features/Devices/components/DeleteDeviceButton';
-import { CreateQrButton } from 'features/Devices/components/CreateQrButton';
+import { OpenConfigButton } from 'features/Devices/components/OpenConfigButton';
 
 interface Props {
   devices: Device[];
@@ -15,7 +15,7 @@ export const DevicesTable: FC<Props> = ({ devices }) => {
     createdAt: 'Дата создания',
     deviceName: 'Название',
     assignedIp: 'IP адрес',
-    createQR: 'Сгенерировать QR',
+    config: 'Показать конфиг',
     delete: 'Удалить',
   };
 
@@ -24,7 +24,7 @@ export const DevicesTable: FC<Props> = ({ devices }) => {
       createdAt: formatISOString(device.createdAt),
       deviceName: device.deviceName,
       assignedIp: device.assignedIp,
-      createQR: <CreateQrButton config={device.serverConfig} />,
+      config: <OpenConfigButton device={device} />,
       delete: <DeleteDeviceButton />,
     }));
   };
