@@ -7,9 +7,9 @@ import { Pagination } from 'shared/ui/Pagination';
 import { ADMIN_LOGS_LIMIT } from 'shared/constants';
 import type { PaginatedResponse } from 'shared/model';
 import { getTotalPages } from 'shared/utils/pagination.ts';
-import { getLogs } from 'features/admin/Logs/services/logs.service';
-import type { Log } from 'features/admin/Logs/model';
-import { OpenLogButton } from 'features/admin/Logs/components/OpenLogButton';
+import { getLogs } from 'features/admin/SystemLogs/services/logs.service';
+import type { Log } from 'features/admin/SystemLogs/model';
+import { OpenLogButton } from 'features/admin/SystemLogs/components/OpenLogButton';
 
 export const Logs: FC = () => {
   const [logs, setLogs] = useState<Log[]>([]);

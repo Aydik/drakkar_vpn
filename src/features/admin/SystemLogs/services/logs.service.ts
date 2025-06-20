@@ -1,5 +1,5 @@
 import { axiosInstance } from 'shared/api/axiosInstance.ts';
-import type { SystemLogDto } from 'features/admin/Logs/model';
+import type { SystemLogDto } from 'features/admin/SystemLogs/model';
 
 export const getLogs = async (data: SystemLogDto) => {
   try {
