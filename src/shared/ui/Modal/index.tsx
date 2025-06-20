@@ -1,4 +1,4 @@
-import { type FC, type ReactNode, type MouseEvent, useRef, useEffect } from 'react';
+import { type FC, type ReactNode, type MouseEvent, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './index.module.scss';
 
@@ -10,13 +10,6 @@ interface Props {
 
 export const Modal: FC<Props> = ({ isOpened, onClose, children }) => {
   const mouseDownTarget = useRef<EventTarget | null>(null);
-
-  useEffect(() => {
-    document.body.style.overflow = isOpened ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpened]);
 
   if (!isOpened) return null;
 
