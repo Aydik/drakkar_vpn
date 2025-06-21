@@ -30,7 +30,6 @@ export const Tariffs: FC = () => {
       else setTariffs([]);
     } catch (error) {
       console.error(error);
-      setTariffs([]);
     }
   };
 

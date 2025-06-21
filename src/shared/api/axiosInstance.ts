@@ -29,6 +29,9 @@ axiosInstance.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       Cookies.remove('accessToken');
     }
+    if (error.response && error.response.status === 403) {
+      window.location.replace('/');
+    }
     return Promise.reject(error);
   },
 );

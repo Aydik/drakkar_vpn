@@ -15,7 +15,7 @@ export const UpdateTariffButton: FC<Props> = ({ updateTariffs, tariff }) => {
   return (
     <>
       <button className={styles.button} onClick={() => setIsFormOpened(true)}>
-        <Icon name={'log'} />
+        <Icon name={'edit'} />
       </button>
       <Modal isOpened={isFormOpened} onClose={() => setIsFormOpened(false)}>
         <TariffForm
