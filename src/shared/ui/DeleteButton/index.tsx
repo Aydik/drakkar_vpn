@@ -6,7 +6,7 @@ interface Props {
   onClick?: () => void;
 }
 
-export const DeleteDeviceButton: FC<Props> = ({ onClick }) => {
+export const DeleteButton: FC<Props> = ({ onClick }) => {
   return (
     <button className={styles.button} onClick={onClick}>
       <Icon name={'delete'} />

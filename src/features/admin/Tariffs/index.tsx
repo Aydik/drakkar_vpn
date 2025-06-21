@@ -5,6 +5,10 @@ import { Table } from 'shared/ui/Table';
 import type { Tariff as TariffType } from 'entities/Tarrif/model';
 import type { ApiResponse } from 'shared/api/response.ts';
 import { getTariffs } from 'entities/Tarrif/services/tariff.service.ts';
+import { AddTariffButton } from 'features/admin/Tariffs/components/AddTariffButton';
+import { deleteTariff } from 'features/admin/Tariffs/services/tariffs.service.ts';
+import { DeleteButton } from 'shared/ui/DeleteButton';
+import { UpdateTariffButton } from 'features/admin/Tariffs/components/UpdateTariffButton';
 
 export const Tariffs: FC = () => {
   const [tariffs, setTariffs] = useState<TariffType[]>([]);
@@ -16,6 +20,7 @@ export const Tariffs: FC = () => {
     price: 'Стоимость',
     durationInDays: 'Длительность',
     maxDevices: 'Максимум устройств',
+    manage: 'Управление',
   };
 
   const fetchTariffs = async () => {
@@ -29,6 +34,15 @@ export const Tariffs: FC = () => {
     }
   };
 
+  const handleDeleteTariff = async (id: string) => {
+    try {
+      await deleteTariff(id);
+      fetchTariffs();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     fetchTariffs();
   }, []);
@@ -38,6 +52,12 @@ export const Tariffs: FC = () => {
       ...tariff,
       price: tariff.price + ' ₽',
       durationInDays: tariff.durationInDays + ' дней',
+      manage: (
+        <div className={styles.manage}>
+          <UpdateTariffButton updateTariffs={fetchTariffs} tariff={tariff} />
+          <DeleteButton onClick={() => handleDeleteTariff(tariff.id)} />
+        </div>
+      ),
     }));
   };
 
@@ -47,7 +67,7 @@ export const Tariffs: FC = () => {
         <Typography variant={'h3'}>Тарифы</Typography>
         <div className={styles.info}>
           <Typography className={styles.tariffsCount}>{tariffs.length} тарифов</Typography>
-          {/*<AddDeviceButton updateDevices={fetchDevices}/>*/}
+          <AddTariffButton updateTariffs={fetchTariffs} />
         </div>
       </div>
       {tariffs.length ? (

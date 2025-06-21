@@ -10,11 +10,14 @@ import { getTotalPages } from 'shared/utils/pagination.ts';
 import { getLogs } from 'features/admin/SystemLogs/services/logs.service';
 import type { Log } from 'features/admin/SystemLogs/model';
 import { OpenLogButton } from 'features/admin/SystemLogs/components/OpenLogButton';
+// import { useNavigate } from 'react-router-dom';
 
 export const Logs: FC = () => {
   const [logs, setLogs] = useState<Log[]>([]);
   const [page, setPage] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
+
+  // const navigate = useNavigate();
 
   const headers: Record<string, ReactNode> = {
     timestamp: 'Дата',

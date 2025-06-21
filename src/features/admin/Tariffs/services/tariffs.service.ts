@@ -1,7 +1,7 @@
 import { axiosInstance } from 'shared/api/axiosInstance.ts';
-import type { Tariff } from 'entities/Tarrif/model';
+import type { TariffWithoutId } from 'entities/Tarrif/model';
 
-export const createTariff = async (tariff: Tariff) => {
+export const createTariff = async (tariff: TariffWithoutId) => {
   try {
     const res = await axiosInstance.post('admin/tariffs', tariff);
     return res.data;
@@ -10,10 +10,9 @@ export const createTariff = async (tariff: Tariff) => {
   }
 };
 
-export const updateTariff = async (tariff: Tariff) => {
+export const updateTariff = async (tariff: TariffWithoutId, id: string) => {
   try {
-    const { id, ...dataWithoutId } = tariff;
-    const res = await axiosInstance.put(`admin/tariffs/${id}`, dataWithoutId);
+    const res = await axiosInstance.put(`admin/tariffs/${id}`, tariff);
     return res.data;
   } catch (err) {
     throw err;

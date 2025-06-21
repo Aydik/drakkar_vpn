@@ -7,6 +7,8 @@ export interface Tariff {
   maxDevices: number;
 }
 
+export type TariffWithoutId = Omit<Tariff, 'id'>;
+
 export interface Subscription {
   currentTariffName: string;
   expiresAt: string;

@@ -1,5 +1,5 @@
 .tariffs {
-  padding: 1rem 0;
+  padding: 1.5rem 0 1rem;
 }
 
 .caption {
@@ -9,16 +9,28 @@
   align-items: end;
 }
 
-.tariffsCount {
-  white-space: nowrap;
-  color: var(--color-disabled);
-  font-size: 1.5rem;
-  line-height: 1.5em;
-  font-weight: 800;
+
+.info {
+  display: flex;
+  align-items: end;
+  gap: 1.5rem;
+
+  .tariffsCount {
+    white-space: nowrap;
+    color: var(--color-disabled);
+    font-size: 1.5rem;
+    line-height: 1.5em;
+    font-weight: 800;
+  }
 }
 
 .tableWrapper {
   margin-top: 1.5rem;
+}
+
+.manage{
+  display: flex;
+  gap: 0.5rem;
 }
 
 .noData {

@@ -2,7 +2,7 @@ import type { Device } from 'features/Devices/model';
 import type { FC, ReactNode } from 'react';
 import { formatISOString } from 'shared/utils/date.ts';
 import { Table } from 'shared/ui/Table';
-import { DeleteDeviceButton } from 'features/Devices/components/DeleteDeviceButton';
+import { DeleteButton } from 'shared/ui/DeleteButton';
 import { OpenConfigButton } from 'features/Devices/components/OpenConfigButton';
 
 interface Props {
@@ -24,7 +24,7 @@ export const DevicesTable: FC<Props> = ({ devices }) => {
       deviceName: device.deviceName,
       config: <OpenConfigButton device={device} />,
       delete: (
-        <DeleteDeviceButton
+        <DeleteButton
           onClick={() => {
             console.log(`Delete device id=${device.deviceId}`);
           }}

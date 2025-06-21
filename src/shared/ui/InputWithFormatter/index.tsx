@@ -6,6 +6,7 @@ import {
   type FieldPath,
   type FieldValues,
   type RegisterOptions,
+  type PathValue,
 } from 'react-hook-form';
 import styles from './index.module.scss';
 import clsx from 'clsx';
@@ -19,6 +20,7 @@ interface InputWithFormatterProps<TFieldValues extends FieldValues> {
   error?: FieldError;
   rules?: RegisterOptions<TFieldValues, FieldPath<TFieldValues>>;
   type?: string;
+  defaultValue?: PathValue<TFieldValues, FieldPath<TFieldValues>>;
 }
 
 export const InputWithFormatter = <TFieldValues extends FieldValues>({
@@ -29,12 +31,14 @@ export const InputWithFormatter = <TFieldValues extends FieldValues>({
   error,
   rules,
   type = 'text',
+  defaultValue,
 }: InputWithFormatterProps<TFieldValues>) => {
   return (
     <Controller
       name={name}
       control={control}
       rules={rules}
+      defaultValue={defaultValue}
       render={({ field: { value, onChange, onBlur, ref } }) => {
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           const inputVal = e.target.value;
