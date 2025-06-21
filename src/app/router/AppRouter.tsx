@@ -12,6 +12,7 @@ import { ProfilePage } from 'pages/ProfilePage';
 import { AuthorizedLayout } from 'app/layouts/AuthorizedLayout';
 import { AdminLayout } from 'app/layouts/AdminLayout';
 import { LogsPage } from 'pages/admin/LogsPage';
+import { TariffsPage } from 'pages/admin/TariffsPage';
 
 const routeConfig: RouteObject[] = [
   {
@@ -60,6 +61,10 @@ const routeConfig: RouteObject[] = [
       {
         path: 'logs',
         element: <LogsPage />,
+      },
+      {
+        path: 'tariffs',
+        element: <TariffsPage />,
       },
     ],
   },
